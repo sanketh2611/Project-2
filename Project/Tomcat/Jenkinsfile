@@ -77,7 +77,7 @@ pipeline{
         stage ('Tomcat Deployment') {
            steps {
              script {
-                 deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://13.233.91.172:8080')], contextPath: '/ecommerce', onFailure: false, war: 'target/webapp.war' 
+                 deploy adapters: [tomcat7(credentialsId: 'tomcat-credentials', path: '', url: 'http://13.233.91.172:8080')], contextPath: '/ecommerce', onFailure: false, war: 'target/webapp.war' 
                     }
                   }
            }
