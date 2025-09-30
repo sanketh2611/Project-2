@@ -74,13 +74,22 @@ pipeline{
               )
           }
         }
-        stage ('Tomcat Deployment') {
+    stage ('Tomcat Deployment') {
            steps {
-             script {
-                 deploy adapters: [tomcat7(credentialsId: 'tomcat-credentials', path: '', url: 'http://13.233.91.172:8080')], contextPath: '/ecommerce', onFailure: false, war: 'target/webapp.war' 
-                    }
-                  }
-           }
+           script {
+            deploy adapters: [
+                tomcat7(
+                    credentialsId: 'tomcat-credentials',
+                    path: '',
+                    url: 'http://13.233.91.172:8080/manager/text'
+                )
+            ],
+            contextPath: '/ecommerce',
+            war: 'target/webapp.war'
+        }
+    }
+}
+
          stage('post-build step') {
             steps {
 	    	sh '''
